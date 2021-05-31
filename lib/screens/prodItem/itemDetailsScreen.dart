@@ -22,7 +22,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final allComments = Provider.of<CommentsProvider>(context).getAllComments;
-    final prodId = ModalRoute.of(context)!.settings.arguments as String;
+    final prodId = ModalRoute.of(context)!.settings.arguments as int;
     final loadedProd =
         Provider.of<MakeUpProvider>(context, listen: true).findById(prodId);
 
@@ -199,26 +199,28 @@ class _buildBtnAndPrice extends StatefulWidget {
 }
 
 class __buildBtnAndPriceState extends State<_buildBtnAndPrice> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var _isClicked;
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  var _isClicked = true;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _isClicked = true;
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   if (_isClicked) {
+  //     alertWindow(context);
+  //   }
+  // }
 
-  @override
-  void dispose() {
-    alertWindow(context);
-    _isClicked = false;
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   alertWindow(context);
+  //   _isClicked = false;
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      key: _scaffoldKey,
+      // key: _scaffoldKey,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -269,9 +271,7 @@ class __buildBtnAndPriceState extends State<_buildBtnAndPrice> {
                 Spacer(),
                 InkWell(
                   onTap: () {
-                    _isClicked
-                        ? alertWindow(_scaffoldKey.currentContext!)
-                        : null;
+                    _isClicked ? alertWindow(context) : null;
                     setState(() {
                       _isClicked = false;
                       widget.loadedProd.toggleBought();

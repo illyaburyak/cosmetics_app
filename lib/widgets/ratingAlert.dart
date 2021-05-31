@@ -23,7 +23,7 @@ Future<bool> alertWindow(BuildContext context) async {
               allowHalfRating: true,
               itemCount: 5,
               itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => Icon(
+              itemBuilder: (ctx, _) => Icon(
                 Icons.star,
                 color: Colors.amber,
               ),
@@ -36,7 +36,11 @@ Future<bool> alertWindow(BuildContext context) async {
         buttons: [
           DialogButton(
             height: 50,
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              Future.delayed(Duration.zero, () {
+                Navigator.pop(context);
+              });
+            },
             child: Text(
               "Ok",
               style: TextStyle(color: Colors.white, fontSize: 20),
@@ -58,6 +62,7 @@ Future<bool> alertWindow(BuildContext context) async {
 
     return window!;
   } catch (e) {
+    print(e);
     throw e;
   }
 }

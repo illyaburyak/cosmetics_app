@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MakeUp with ChangeNotifier {
-  final String? id;
+  final int? id;
   final String? prodName;
   final String? prodBrand;
   final String? desc;
-  final double? price;
+  final String? price;
   final String? category;
   final String? img;
   final String? prodType;
   bool isFavorite;
   bool isWant;
   bool isBought;
-
   double isRating;
 
   MakeUp({
@@ -31,7 +30,6 @@ class MakeUp with ChangeNotifier {
   });
 
   void toggleFavorite() {
-    isFavorite = !isFavorite;
     notifyListeners();
   }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_search_cosmetic/screens/homeScreen/homePage.dart';
 import 'package:provider/provider.dart';
 
+import 'providers/auth.dart';
 import 'providers/commentsProvider.dart';
 import 'providers/homeScreenModel.dart';
 import 'providers/makeUpProvider.dart';
@@ -21,6 +23,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (context) => Auth(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => MakeUpProvider(),
         ),
         ChangeNotifierProvider(
@@ -30,19 +35,21 @@ class MyApp extends StatelessWidget {
           create: (context) => CommentsProvider(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: const Color(0xfff1f1f1),
+      child: Consumer<Auth>(
+        builder: (context, auth, _) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primaryColor: const Color(0xfff1f1f1),
+          ),
+          home: auth.isAuth ? HomePageScreen() : HomePageScreen(),
+          routes: {
+            ItemDetailsScreen.routeName: (ctx) => ItemDetailsScreen(),
+            RowListItemScreen.routeName: (ctx) => RowListItemScreen(),
+            AdditemComment.routeName: (ctx) => AdditemComment(),
+            Profile.routeName: (ctx) => Profile(),
+            FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
+          },
         ),
-        home: AuthScreen(),
-        routes: {
-          ItemDetailsScreen.routeName: (ctx) => ItemDetailsScreen(),
-          RowListItemScreen.routeName: (ctx) => RowListItemScreen(),
-          AdditemComment.routeName: (ctx) => AdditemComment(),
-          Profile.routeName: (ctx) => Profile(),
-          FavoriteScreen.routeName: (ctx) => FavoriteScreen(),
-        },
       ),
     );
   }

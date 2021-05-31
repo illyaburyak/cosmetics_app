@@ -5,7 +5,7 @@ import '../../providers/makeUpProvider.dart';
 import '../prodItem/itemDetailsScreen.dart';
 
 class FavoriteScreenItem extends StatefulWidget {
-  final String? id;
+  final int? id;
   final String? img;
   final String? prodName;
 

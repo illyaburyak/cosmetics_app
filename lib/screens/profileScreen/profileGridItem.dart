@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileGridItem extends StatelessWidget {
-  final String? id;
+  final int? id;
   final String? img;
   final String? prodName;
 

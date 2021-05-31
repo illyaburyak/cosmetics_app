@@ -5,7 +5,7 @@ class RowListItemDetailsScreen extends StatelessWidget {
   final String? img;
   final String? text;
   final String? descr;
-  final String? id;
+  final int? id;
 
   const RowListItemDetailsScreen({this.img, this.text, this.descr, this.id});
   @override

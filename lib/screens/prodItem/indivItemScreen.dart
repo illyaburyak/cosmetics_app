@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'itemDetailsScreen.dart';
 
 class IndividItemScreen extends StatefulWidget {
-  final String? id;
+  final int? id;
   final String? img;
   final String? prodName;
   final String? prodType;
